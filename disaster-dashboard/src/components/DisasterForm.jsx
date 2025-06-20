@@ -63,9 +63,9 @@ export default function DisasterForm() {
       <input name="lat" placeholder="Latitude" value={form.lat} onChange={handleChange} />
       <input name="lng" placeholder="Longitude" value={form.lng} onChange={handleChange} />
      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-      <button onClick={handleSubmit} disabled={loading}></div>
+      <button onClick={handleSubmit} disabled={loading}>
   {loading ? 'Submitting...' : 'Submit'}
-</button>
+</button></div>
 
     </div>
   );
