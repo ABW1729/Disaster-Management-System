@@ -3,8 +3,10 @@ import axios from 'axios';
 import { deleteDisaster, getDisasters } from '../api';
 import AddResourceForm from './AddResource.jsx';
 import React from 'react';
+import { updateDisaster } from '../api';
 import { useOutletContext } from 'react-router-dom';
 import { io } from 'socket.io-client';
+import { updateDisaster } from '../api';
 import socket from '../socket';
 export default function DisasterList() {
     const {
@@ -178,12 +180,13 @@ const fetchDisasters = async () => {
               <button
                 onClick={async () => {
                   try {
-                    await axios.put(`http://localhost:5000/disasters/${editDisasterId}`, {
-                      title: editForm.title,
-                      location_name: editForm.location_name,
-                      tags: editForm.tags.split(',').map(tag => tag.trim()),
-                      description: editForm.description,
-                    });
+                 await updateDisaster(editDisasterId, {
+                  title: editForm.title,
+                  location_name: editForm.location_name,
+                  tags: editForm.tags.split(',').map(tag => tag.trim()),
+                  description: editForm.description,
+                });
+
                     setEditModalOpen(false);
                     fetchDisasters();
                   } catch (err) {
