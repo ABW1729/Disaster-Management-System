@@ -1,7 +1,7 @@
 const tweetIntervals = new Map();
 
 module.exports=function socialSocketListeners(socket,io) {
-  io.on('connection', (socket) => {
+
     console.log('[SOCKET] Connected');
 
     socket.on('start_tweet_tracking', async ({ disaster_id, keywords }) => {
@@ -58,6 +58,6 @@ module.exports=function socialSocketListeners(socket,io) {
       const interval = setInterval(fetchAndEmitIfStale, 5 * 60 * 1000);
       tweetIntervals.set(disaster_id, interval);
     });
-  });
+
 }
 
