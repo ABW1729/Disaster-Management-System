@@ -85,13 +85,11 @@ const fetchDisasters = async () => {
   return (
     <div className="card">
       <h2>All Disasters</h2>
-            {loading ? (
-       <div className="spinner"></div>
+      {loading ? (
+        <p>Loading disasters...</p>
       ) : list.length === 0 ? (
         <p>No disasters found.</p>
       ) : (
-        <table>...</table>
-      )} : (
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
@@ -110,34 +108,34 @@ const fetchDisasters = async () => {
                   <td>{d.location_name}</td>
                   <td>{d.description}</td>
                   <td>{d.tags?.join(', ') || '-'}</td>
-                 <td>
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <button onClick={() => toggleForm(d.id)}>
-                    {openFormId === d.id ? 'Cancel' : 'Add Resource'}
-                  </button>
-                  <button
-                  onClick={() => {
-                    setEditDisasterId(d.id);
-                    setEditForm({
-                      title: d.title || '',
-                      location_name: d.location_name || '',
-                      tags: (d.tags || []).join(', '),
-                      description: d.description || '',
-                    });
-                    setEditModalOpen(true);
-                  }}
-                >
-                  Update
-                </button>
-                  <button onClick={() => handleDelete(d.id)} >
-                    Delete
-                  </button>
-                </div>
-              </td>
+                  <td>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <button onClick={() => toggleForm(d.id)}>
+                        {openFormId === d.id ? 'Cancel' : 'Add Resource'}
+                      </button>
+                      <button
+                        onClick={() => {
+                          setEditDisasterId(d.id);
+                          setEditForm({
+                            title: d.title || '',
+                            location_name: d.location_name || '',
+                            tags: (d.tags || []).join(', '),
+                            description: d.description || '',
+                          });
+                          setEditModalOpen(true);
+                        }}
+                      >
+                        Update
+                      </button>
+                      <button onClick={() => handleDelete(d.id)} >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
                 </tr>
                 {openFormId === d.id && (
                   <tr>
-                    <td colSpan="4">
+                    <td colSpan="5"> 
                       <AddResourceForm
                         disasterId={d.id}
                         onSuccess={() => {
@@ -151,8 +149,7 @@ const fetchDisasters = async () => {
             ))}
           </tbody>
         </table>
-        
-      )
+      )}
             {editModalOpen && (
         <div className="modal-backdrop">
           <div className="modal">
