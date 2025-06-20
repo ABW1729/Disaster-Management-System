@@ -25,23 +25,7 @@ function DashBoard({ role:role,disasters: initialDisasters,user, children }) {
         <Link to="/dashboard/verification">Image Verification</Link>
         <Link to="/dashboard/reports">Reports</Link>
         <Link to="/dashboard/map">Map View</Link>
-       <LogoutButton user={user} onLogout={() => setRole(null)}  style={{
-            backgroundColor: '#2b6cb0', 
-            color: 'white',
-            padding: '10px 20px', 
-            border: '1px solid black', 
-            borderRadius: '4px', 
-            cursor: 'pointer',
-            fontSize: '1rem',
-            fontWeight: 'bold', 
-            marginLeft: 'auto',
-            textDecoration: 'none',
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            gap: '8px', 
-            transition: 'background-color 0.2s ease, border-color 0.2s ease',
-          }} />
+       <LogoutButton user={user} onLogout={() => setRole(null)}  />
       </nav>
     
     <Outlet context={{ 
