@@ -31,7 +31,7 @@ export default function LoginPage({ onLogin }) {
       />
       <input
         type="password"
-        placeholder=admin123"
+        placeholder="admin123"
         value={password}
         onChange={e => setPassword(e.target.value)}
         style={{ display: 'block', marginBottom: '1rem', width: '100%' }}
