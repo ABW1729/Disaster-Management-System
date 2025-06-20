@@ -17,7 +17,7 @@ const io = new Server(server, {
 });
 global.io = io; 
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  origin: 'https://disaster-management-system-black.vercel.app/', 
   credentials: true,               
 }));
 app.use(express.json());
