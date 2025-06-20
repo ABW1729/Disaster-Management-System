@@ -118,9 +118,7 @@ npm run dev
 ## 🖥️ Deployment
 
 - Vercel Deployment
-```
-https://disaster-management-system-black.vercel.app
-```
+https://disaster-management-system-black.vercel.app  
 
 ## 📌 Mock Users
 
