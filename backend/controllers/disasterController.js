@@ -70,7 +70,6 @@ exports.getDisasters = async (req, res) => {
     const { data, error } = await query.order('created_at', { ascending: false });
 
     if (error) throw error;
-    global.io.emit('disaster_updated', data[0]);
     return res.json({ disasters: data });
   } catch (err) {
     console.error('Error fetching disasters:', err.message);
