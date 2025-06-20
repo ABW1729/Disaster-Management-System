@@ -42,16 +42,16 @@ const fetchDisasters = async () => {
 };
 
 
-  useEffect(() => {
-    fetchDisasters();
-    socket.emit('start_disaster_tracking', { user_id: user?.id || 'guest' });
-    socket.on('disaster_updated', () => {
-      fetchDisasters();
-    });
-    return () => {
-      socket.off('disaster_updated');
-    };
-  }, []);
+ useEffect(() => {
+  fetchDisasters();
+  const handleUpdate = () => fetchDisasters();
+  socket.on('disaster_updated', handleUpdate);
+  socket.emit('start_disaster_tracking', { user_id: user?.id || 'guest' });
+
+  return () => {
+    socket.off('disaster_updated', handleUpdate);
+  };
+}, []); 
 
   const toggleForm = (id) => {
     setOpenFormId((prev) => (prev === id ? null : id));
