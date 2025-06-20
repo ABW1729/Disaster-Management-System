@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE = 'http://51.20.134.106:5000';
+const BASE = 'https://disaster-management-system-production-22c3.up.railway.app:5000';
 
 export const createDisaster = data => axios.post(`${BASE}/disasters`, data);
 export const getDisasters = () => axios.get(`${BASE}/disasters`);
