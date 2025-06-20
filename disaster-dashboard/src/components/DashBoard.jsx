@@ -16,7 +16,8 @@ function DashBoard({ role:role,disasters: initialDisasters,user, children }) {
   const [reload, setReload] = useState(false);
   return (
      <div className="container">
-      <nav className="navbar">
+     <nav className="navbar">
+      <div className="nav-links">
         <Link to="/dashboard/create">Form</Link>
         <Link to="/dashboard/disasters">Disaster List</Link>
         <Link to="/dashboard/resources">Resources</Link>
@@ -25,8 +26,9 @@ function DashBoard({ role:role,disasters: initialDisasters,user, children }) {
         <Link to="/dashboard/verification">Image Verification</Link>
         <Link to="/dashboard/reports">Reports</Link>
         <Link to="/dashboard/map">Map View</Link>
-       <LogoutButton user={user} onLogout={() => setRole(null)}  />
-      </nav>
+      </div>
+  <LogoutButton user={user} onLogout={() => setRole(null)} />
+</nav>
     
     <Outlet context={{ 
         disasters, setDisasters,
