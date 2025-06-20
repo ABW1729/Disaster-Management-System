@@ -26,14 +26,39 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use('/disasters', disasterRoutes);
-
+const activeSockets = new Map();
+const socketToUser = new Map(); 
 io.on('connection', socket => {
   console.log('🛰️ Client connected:', socket.id);
+  socket.on('user_login', ({ user_id }) => {
+  if (!activeSockets.has(user_id)) activeSockets.set(user_id, []);
+  activeSockets.get(user_id).push(socket.id);
+  socketToUser.set(socket.id, user_id);
+});
+  
    resourceSocketHandler(socket, io);
    socialSocketListeners(socket,io);
+  
+  socket.on('user_logout', ({ user_id }) => {
+  const sockets = activeSockets.get(user_id) || [];
+  sockets.forEach(id => io.sockets.sockets.get(id)?.disconnect());
+  activeSockets.delete(user_id);
+  sockets.forEach(id => socketToUser.delete(id));
+  console.log(`[SOCKET] Logged out all sockets for user: ${user_id}`);
+});
+  
   socket.on('disconnect', () => {
-    console.log('❌ Client disconnected:', socket.id);
-  });
+  const user_id = socketToUser.get(socket.id);
+  if (!user_id) return;
+  const sockets = activeSockets.get(user_id) || [];
+  const filtered = sockets.filter(id => id !== socket.id);
+  if (filtered.length > 0) {
+    activeSockets.set(user_id, filtered);
+  } else {
+    activeSockets.delete(user_id);
+  }
+  socketToUser.delete(socket.id);
+});
 });
 
 const PORT = process.env.PORT || 5000;
