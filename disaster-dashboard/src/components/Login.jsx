@@ -24,14 +24,14 @@ export default function LoginPage({ onLogin }) {
       <h2>Login</h2>
       <input
         type="text"
-        placeholder="Username"
+        placeholder="admin"
         value={username}
         onChange={e => setUsername(e.target.value)}
         style={{ display: 'block', marginBottom: '1rem', width: '100%' }}
       />
       <input
         type="password"
-        placeholder="Password"
+        placeholder=admin123"
         value={password}
         onChange={e => setPassword(e.target.value)}
         style={{ display: 'block', marginBottom: '1rem', width: '100%' }}
