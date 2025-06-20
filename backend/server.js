@@ -25,6 +25,7 @@ app.use(cors({
   credentials: true,               
 }));
 app.use(express.json());
+app.use(cookieParser())
 app.use('/disasters', disasterRoutes);
 const activeSockets = new Map();
 const socketToUser = new Map(); 
@@ -83,5 +84,16 @@ app.post('/login', (req, res) => {
 
   res.cookie('sessionId', sessionId, { httpOnly: true });
   res.json({ message: 'Login successful', role: user.role , id:user.id  });
+});
+
+app.post('/logout', (req, res) => {
+  const sessionId = req.cookies?.sessionId;
+  if (sessionId && sessions[sessionId]) {
+    const user_id = sessions[sessionId].id || sessions[sessionId].username;
+    delete sessions[sessionId];
+  }
+
+  res.clearCookie('sessionId');
+  return res.json({ message: 'Logged out successfully' });
 });
 server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
