@@ -14,8 +14,8 @@ export default function DisasterForm() {
     lat: '',
     lng: '',
   });
-  console.log(user);
-  if (user?.role !== 'admin') return <p style={{ color: 'gray' }}>Only admins can create disasters.</p>;
+  
+ 
 
   const handleChange = e => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
