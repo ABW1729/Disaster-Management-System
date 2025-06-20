@@ -2,7 +2,7 @@
 
 # 🌍 Disaster Response Coordination Platform
 
-A full-stack MERN-based platform designed to support real-time disaster monitoring, resource coordination, and social media aggregation. It integrates with **Supabase**, **Google Gemini API**, **Twitter API**, and **Indian National Disaster Management Agency Alerts** scraping for enhanced situational awareness.
+A full-stack  platform designed to support real-time disaster monitoring, resource coordination, and social media aggregation. It integrates with **Supabase**, **Google Gemini API**, **Twitter API**, and **Indian National Disaster Management Agency Alerts** scraping for enhanced situational awareness.
 
 ## 🗂️ Project Structure
 
