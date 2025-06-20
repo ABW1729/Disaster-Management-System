@@ -18,6 +18,8 @@ export default function DisasterList() {
     } = useOutletContext();
   const [list, setList] = useState([]);
   const [openFormId, setOpenFormId] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editDisasterId, setEditDisasterId] = useState(null);
   const [editForm, setEditForm] = useState({
@@ -26,15 +28,19 @@ export default function DisasterList() {
     tags: '',
     description: '',
   });
-  const fetchDisasters = async () => {
-    try {
-      const res = await getDisasters();
-      setList(res.data.disasters);
-      setDisasters(res.data.disasters || []);
-    } catch (err) {
-      console.error('Error fetching disasters:', err);
-    }
-  };
+const fetchDisasters = async () => {
+  setLoading(true);
+  try {
+    const res = await getDisasters();
+    setList(res.data.disasters);
+    setDisasters(res.data.disasters || []);
+  } catch (err) {
+    console.error('Error fetching disasters:', err);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   useEffect(() => {
     fetchDisasters();
@@ -79,9 +85,13 @@ export default function DisasterList() {
   return (
     <div className="card">
       <h2>All Disasters</h2>
-      {list.length === 0 ? (
+            {loading ? (
+       <div className="spinner"></div>
+      ) : list.length === 0 ? (
         <p>No disasters found.</p>
       ) : (
+        <table>...</table>
+      )} : (
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
@@ -142,7 +152,7 @@ export default function DisasterList() {
           </tbody>
         </table>
         
-      )}
+      )
             {editModalOpen && (
         <div className="modal-backdrop">
           <div className="modal">
