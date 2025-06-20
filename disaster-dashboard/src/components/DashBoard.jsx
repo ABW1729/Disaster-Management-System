@@ -14,6 +14,22 @@ function DashBoard({ role:role,disasters: initialDisasters,user, children }) {
   const [disasters, setDisasters] = useState(initialDisasters);
   const [selected, setSelected] = useState(null);
   const [reload, setReload] = useState(false);
+  if (user?.role !== 'admin') {
+  return (
+    <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      height: '60vh', 
+      textAlign: 'center' 
+    }}>
+      <p style={{ color: 'gray', fontSize: '1.2rem' }}>
+        Only admins can create disasters.
+      </p>
+    </div>
+  );
+}
+
   return (
      <div className="container">
      <nav className="navbar">
