@@ -13,11 +13,15 @@ const { v4: uuidv4 } = require('uuid');
 app.use(morgan('dev'));
 const { Server } = require('socket.io');
 const io = new Server(server, {
-  cors: { origin: '*' }
+  cors: {
+    origin: 'https://disaster-management-system-black.vercel.app',
+    methods: ['GET', 'POST'],
+    credentials: true
+  }
 });
 global.io = io; 
 app.use(cors({
-  origin: 'https://disaster-management-system-black.vercel.app/', 
+  origin: 'https://disaster-management-system-black.vercel.app', 
   credentials: true,               
 }));
 app.use(express.json());
