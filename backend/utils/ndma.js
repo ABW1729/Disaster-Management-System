@@ -1,19 +1,44 @@
 const puppeteer = require('puppeteer');
+const supabase = require('../supabaseClient');
+
+const getBrowser = async () => {
+  if (process.env.BROWSER_WS_ENDPOINT) {
+    return await puppeteer.connect({
+      browserWSEndpoint: process.env.BROWSER_WS_ENDPOINT,
+    });
+  } else {
+    return await puppeteer.launch({
+      headless: 'new',
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+  }
+};
 
 async function scrapeNDMANews() {
-  const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
+  const cacheKey = 'ndma:alerts';
 
+  // 1. Check Supabase cache
+  const { data: cached } = await supabase
+    .from('cache')
+    .select('value, expires_at')
+    .eq('key', cacheKey)
+    .maybeSingle();
+
+  const now = new Date();
+  if (cached && new Date(cached.expires_at) > now) {
+    console.log('[CACHE] Serving NDMA alerts from cache');
+    return cached.value;
+  }
+
+  const browser = await getBrowser();
   const page = await browser.newPage();
-  await page.goto('https://sachet.ndma.gov.in/', { waitUntil: 'networkidle2' });
 
   try {
-    // Wait for the tab button to appear
-    await page.waitForSelector('button.MuiTab-root', { timeout: 60000 });
+    await page.goto('https://sachet.ndma.gov.in/', { waitUntil: 'networkidle2', timeout: 30000 });
 
-    // Click the button/tab with label "All India CAP Alert"
+    await page.waitForSelector('button.MuiTab-root', { timeout: 15000 });
     const buttons = await page.$$('button.MuiTab-root');
+
     for (const btn of buttons) {
       const label = await btn.evaluate(el => el.innerText.trim());
       if (label.includes('All India CAP Alert')) {
@@ -22,32 +47,38 @@ async function scrapeNDMANews() {
       }
     }
 
-    // Wait for the divs to load inside the news card container
     await page.waitForSelector('div.FooterLogo_cardMAP__pjpUv.FooterLogo_cardMAP2__2u9zC > div', {
-      timeout: 60000,
+      timeout: 15000,
     });
 
-    // Extract the news items
     const news = await page.$$eval(
       'div.FooterLogo_cardMAP__pjpUv.FooterLogo_cardMAP2__2u9zC > div',
       divs => divs.map(div => div.textContent.trim()).filter(text => text)
     );
-     const structured = [];
+
+    const structured = [];
     for (let i = 0; i < news.length - 1; i += 2) {
-    structured.push({
+      structured.push({
         type: news[i],
         location: news[i + 1],
-    });
+      });
     }
-    console.log('[✅ NDMA NEWS]', structured);
+
+    // 2. Cache result in Supabase for 1 hour
+    await supabase.from('cache').upsert({
+      key: cacheKey,
+      value: structured,
+      expires_at: new Date(now.getTime() + 60 * 60 * 1000).toISOString(),
+    });
+
+    console.log('[✅ NDMA NEWS] Fetched & cached');
     await browser.close();
     return structured;
   } catch (err) {
-    console.error('[❌ ERROR]', err.message);
+    console.error('[❌ NDMA SCRAPER ERROR]', err.message);
     await browser.close();
     return [];
   }
 }
 
-// Run
-module.exports=scrapeNDMANews;
+module.exports = scrapeNDMANews;
