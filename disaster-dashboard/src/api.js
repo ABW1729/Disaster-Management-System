@@ -21,6 +21,6 @@ export const addResource = (disasterId, resourceData) =>axios.post(`${BASE}/disa
 export const getReports= ()=> axios.get(`${BASE}/disasters/reports`);
 export const loginUser = (username, password) =>axios.post(`${BASE}/login`, { username, password }, { withCredentials: true });
 export const deleteDisaster=(id)=>axios.delete(`$BASE/disasters/${id}`)
-export const updateDisaster=(id)=>axios.put(`$BASE/disasters/${id}`)
+export const updateDisaster = (id, updatedData) =>axios.put(`${BASE}/disasters/${id}`, updatedData);
 export const logoutUser = () => axios.post(`${BASE}/logout`, {}, { withCredentials: true });
 
