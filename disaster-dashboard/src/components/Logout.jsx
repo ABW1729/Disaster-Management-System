@@ -4,7 +4,7 @@ import socket from '../socket';
 import { logoutUser } from '../api';
 import React from 'react';
 
-export default function LogoutButton({ user, onLogout }) {
+export default function LogoutButton({ user, onLogout,className }) {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -20,7 +20,7 @@ export default function LogoutButton({ user, onLogout }) {
   };
 
   return (
-    <button onClick={handleLogout} style={{ marginLeft: 'auto' }}>
+    <button onClick={handleLogout} style={{ marginLeft: 'auto' }} className={className}>
       🔒 Logout
     </button>
   );
