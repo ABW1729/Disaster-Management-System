@@ -2,7 +2,6 @@ const puppeteer = require('puppeteer');
 
 async function scrapeNDMANews() {
   const browser = await puppeteer.launch({
-    headless: 'new',
     args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
 
@@ -11,7 +10,7 @@ async function scrapeNDMANews() {
 
   try {
     // Wait for the tab button to appear
-    await page.waitForSelector('button.MuiTab-root', { timeout: 10000 });
+    await page.waitForSelector('button.MuiTab-root', { timeout: 60000 });
 
     // Click the button/tab with label "All India CAP Alert"
     const buttons = await page.$$('button.MuiTab-root');
@@ -25,7 +24,7 @@ async function scrapeNDMANews() {
 
     // Wait for the divs to load inside the news card container
     await page.waitForSelector('div.FooterLogo_cardMAP__pjpUv.FooterLogo_cardMAP2__2u9zC > div', {
-      timeout: 10000,
+      timeout: 60000,
     });
 
     // Extract the news items
