@@ -1,5 +1,6 @@
 import '../style.css';
 import DisasterForm from './DisasterForm';
+import LogoutButton from './Logout';
 import DisasterList from './DisasterList';
 import SocialFeed from './SocialFeed';
 import MapView from './Mapview';
@@ -24,6 +25,7 @@ function DashBoard({ role:role,disasters: initialDisasters,user, children }) {
         <Link to="/dashboard/verification">Image Verification</Link>
         <Link to="/dashboard/reports">Reports</Link>
         <Link to="/dashboard/map">Map View</Link>
+       <LogoutButton user={user} onLogout={() => setRole(null)} />
       </nav>
     
     <Outlet context={{ 
