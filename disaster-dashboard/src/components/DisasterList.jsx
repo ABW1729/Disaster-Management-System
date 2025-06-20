@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { deleteDisaster, getDisasters } from '../api';
-import AddResourceForm from './AddRESOURCE.JSX';
+import AddResourceForm from './AddResource.jsx';
 import React from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { io } from 'socket.io-client';
