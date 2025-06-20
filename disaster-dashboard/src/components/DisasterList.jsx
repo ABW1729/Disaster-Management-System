@@ -3,7 +3,6 @@ import axios from 'axios';
 import { deleteDisaster, getDisasters } from '../api';
 import AddResourceForm from './AddResource.jsx';
 import React from 'react';
-import { updateDisaster } from '../api';
 import { useOutletContext } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { updateDisaster } from '../api';
