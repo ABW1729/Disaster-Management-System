@@ -24,7 +24,7 @@ function DashBoard({ role:role,disasters: initialDisasters,user, children }) {
       textAlign: 'center' 
     }}>
       <p style={{ color: 'gray', fontSize: '1.2rem' }}>
-        Only admins can create disasters.
+        Only admins can access this route.
       </p>
     </div>
   );
