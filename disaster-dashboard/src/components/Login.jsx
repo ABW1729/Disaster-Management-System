@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../api';
-
+import socket from '../socket'; 
 export default function LoginPage({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,6 +12,7 @@ export default function LoginPage({ onLogin }) {
     try {
       const res =await loginUser(username,password);
       onLogin({ username, role: res.data.role , id:res.data.id });
+      socket.emit('user_login', { user_id:res.data.id }); 
       navigate('/dashboard');
    
     } catch (err) {
