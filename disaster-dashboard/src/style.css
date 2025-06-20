@@ -61,6 +61,12 @@ button {
   padding: 1rem;
 }
 
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .navbar a {
   text-decoration: none;
   font-weight: bold;
