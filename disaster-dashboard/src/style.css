@@ -89,6 +89,8 @@ button {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
 .navbar a {
