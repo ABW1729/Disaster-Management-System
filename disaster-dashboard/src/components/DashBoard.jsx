@@ -27,7 +27,7 @@ function DashBoard({ role:role,disasters: initialDisasters,user, children }) {
         <Link to="/dashboard/reports">Reports</Link>
         <Link to="/dashboard/map">Map View</Link>
       </div>
-  <LogoutButton user={user} onLogout={() => setRole(null)} />
+  <LogoutButton user={user} onLogout={() => setRole(null)} className="logout-button" />
 </nav>
     
     <Outlet context={{ 
