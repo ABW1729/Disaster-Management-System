@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import socket from '../socket';
 import { logoutUser } from '../api';
+import React from 'react';
 
 export default function LogoutButton({ user, onLogout }) {
   const navigate = useNavigate();
