@@ -2,6 +2,7 @@ const morgan = require('morgan');
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
+const cookieParser=require('cookie-parser');
 const disasterRoutes = require('./routes/disasterRoutes');
 const resourceSocketHandler=require('./sockets/resourceSocketHandler');
 const socialSocketListeners=require('./sockets/socialsocketHandler');
