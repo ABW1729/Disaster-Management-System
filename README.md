@@ -11,18 +11,21 @@ A full-stack  platform designed to support real-time disaster monitoring, resour
 ├── backend/
 │   ├── controllers/
 │   ├── routes/
+|   ├── middlewares/
 │   ├── sockets/
 │   ├── utils/
 │   ├── supabaseClient.js
 │   └── server.js
+|   └── .env
 ├── disaster-dashboard/
 │   ├── components/
 │   ├── api.js
 │   ├── socket.js
 │   ├── App.jsx
 │   └── main.jsx
+|   └── .env
 ├── README.md
-└── .env
+
 ```
 
 ## 🚀 Features
