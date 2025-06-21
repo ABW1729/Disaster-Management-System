@@ -6,15 +6,15 @@ export default function AlertsTable({ data }) {
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
           <tr>
-            <th style={thStyle}>Type</th>
-            <th style={thStyle}>Location</th>
+            <th style={thStyle}>Heading</th>
+            <th style={thStyle}>Description</th>
           </tr>
         </thead>
         <tbody>
           {data && data.map((alert, index) => (
             <tr key={index}>
-              <td style={tdStyle}>{alert.type}</td>
-              <td style={tdStyle}>{alert.location}</td>
+              <td style={tdStyle}>{alert.heading}</td>
+              <td style={tdStyle}>{alert.description}</td>
             </tr>
           ))}
         </tbody>
