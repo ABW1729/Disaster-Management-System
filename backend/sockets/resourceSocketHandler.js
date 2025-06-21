@@ -40,7 +40,7 @@ module.exports = function resourceSocketHandler(socket, io) {
     console.log(`[SOCKET] Tracking started for disaster ${disaster_id}`);
   });
 
-  socket.on('resource_added', async ({ disaster_id, resource }) => {
+  socket.on('resources_added', async ({ disaster_id, resource }) => {
     const tracked = activeDisasters.get(disaster_id);
     if (!tracked) return;
 
