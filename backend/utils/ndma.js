@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');
 const supabase = require('../supabaseClient');
+const axios = require('axios');
 
 
 
@@ -48,7 +49,6 @@ async function scrapeNDMANews() {
     return alerts;
   } catch (err) {
     console.error('[❌ CHEERIO ERROR]', err.message);
-    await browser.close();
     return [];
   }
 }
