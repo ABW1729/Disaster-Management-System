@@ -31,8 +31,9 @@ exports.getNearbyResources = async (req, res) => {
 };
 
 exports.addResource = async (req, res) => {
-  const { name, location_name, type, disaster_id } = req.body;
-
+  const { disasterId } = req.params;
+  const { name, location_name, type } = req.body;
+  const disaster_id= disasterId;
   if (!name || !location_name || !type || !disaster_id) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
