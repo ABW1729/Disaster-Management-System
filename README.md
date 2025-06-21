@@ -2,7 +2,7 @@
 
 # 🌍 Disaster Response Coordination Platform
 
-A full-stack  platform designed to support real-time disaster monitoring, resource coordination, and social media aggregation. It integrates with **Supabase**, **Google Gemini API**, **Twitter API**, and **Indian National Disaster Management Agency Alerts** scraping for enhanced situational awareness.
+A full-stack  platform designed to support real-time disaster monitoring, resource coordination, and social media aggregation. It integrates with **Supabase**, **Google Gemini API**, **Twitter API**, and **FEMA Alerts** scraping for enhanced situational awareness.
 
 ## 🗂️ Project Structure
 
@@ -31,7 +31,7 @@ A full-stack  platform designed to support real-time disaster monitoring, resour
 - **📡 Real-Time Social Media Feed** – Tweets fetched and updated live.
 - **📍 Geospatial Resource Mapping** – Add/query support resources using PostGIS.
 - **🖼️ Image Verification** – Validate disaster images with Google Gemini.
-- **📑 Official Alerts** – Scraped from NDMA Sachet using Puppeteer.
+- **📑 Official Alerts** – Scraped from FEMA using cheerio.
 - **📲 WebSockets** – Live updates for disasters,social feeds and resources.
 - **🔐 Authentication** – Mock login with role-based access.
 - **🧠 AI Integration** – Gemini for location & image analysis.
