@@ -26,12 +26,12 @@ async function scrapeNDMANews() {
     const $ = cheerio.load(html);
     const alerts = [];
 
-    $('.fema-heading').each((_, el) => {
-      const heading = $(el).find('h3').first().text().trim(); 
-      const description = $(el).next('p').text().trim();
+   $('div.wp-block-group .fema-heading').each((_, el) => {
+      const heading = $(el).find('h3').first().text().trim();
+      const description = $(el).next('p').text().trim(); 
 
       if (heading) {
-        alerts.push({ heading:heading, description:description });
+        alerts.push({ heading, description });
       }
     });
 
