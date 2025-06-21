@@ -20,7 +20,8 @@ export default function DisasterList() {
   const [list, setList] = useState([]);
   const [openFormId, setOpenFormId] = useState(null);
   const [loading, setLoading] = useState(false);
-
+ const [addModalOpen, setAddModalOpen] = useState(false);
+  const [currentDisasterId, setCurrentDisasterId] = useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editDisasterId, setEditDisasterId] = useState(null);
   const [editForm, setEditForm] = useState({
@@ -134,18 +135,15 @@ const fetchDisasters = async () => {
                     </div>
                   </td>
                 </tr>
-                {openFormId === d.id && (
-                  <tr>
-                    <td colSpan="5"> 
-                      <AddResourceForm
-                        disasterId={d.id}
-                        onSuccess={() => {
-                          setOpenFormId(null);
-                        }}
-                      />
-                    </td>
-                  </tr>
-                )}
+               <button
+                  onClick={() => {
+                    setCurrentDisasterId(d.id);
+                    setAddModalOpen(true);
+                  }}
+                >
+                  Add Resource
+                </button>
+
               </React.Fragment>
             ))}
           </tbody>
@@ -200,6 +198,23 @@ const fetchDisasters = async () => {
           </div>
         </div>
       )}
+
+                {addModalOpen && (
+          <div className="modal-backdrop">
+            <div className="modal">
+              <h3>Add Resource</h3>
+              <AddResourceForm
+                disasterId={currentDisasterId}
+                onSuccess={() => {
+                  setAddModalOpen(false);
+                }}
+              />
+              <div style={{ marginTop: '1rem', textAlign: 'right' }}>
+                <button onClick={() => setAddModalOpen(false)}>Cancel</button>
+              </div>
+            </div>
+          </div>
+        )}
 
     </div>
   );
