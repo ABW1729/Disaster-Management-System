@@ -197,14 +197,13 @@ const fetchDisasters = async () => {
                 {addModalOpen && (
           <div className="modal-backdrop">
             <div className="modal">
-              <h3>Add Resource</h3>
               <AddResourceForm
                 disasterId={currentDisasterId}
                 onSuccess={() => {
                   setAddModalOpen(false);
                 }}
               />
-              <div style={{ marginTop: '1rem', textAlign: 'right' }}>
+              <div style={{textAlign: 'right'}}>
                 <button onClick={() => setAddModalOpen(false)}>Cancel</button>
               </div>
             </div>
