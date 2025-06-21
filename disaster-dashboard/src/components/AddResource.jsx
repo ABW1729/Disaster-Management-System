@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import React from 'react';
+import { addResource as addResourceAPI } from '../api';
 
 export default function AddResourceForm({ disasterId, onSuccess }) {
   const [form, setForm] = useState({
@@ -12,7 +13,7 @@ export default function AddResourceForm({ disasterId, onSuccess }) {
   const addResource = async () => {
     if (!disasterId) return alert('Disaster not selected');
     try {
-      const res = await addResource(disasterId,form);
+      const res = await addResourceAPI(disasterId,form);
       alert('Resource added!');
       setForm({
         name: '',
