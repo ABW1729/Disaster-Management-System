@@ -27,7 +27,7 @@ async function scrapeNDMANews() {
     const alerts = [];
 
     $('.fema-heading').each((_, el) => {
-      const heading = $(el).find('h3, h2, h1').first().text().trim(); 
+      const heading = $(el).find('h3').first().text().trim(); 
       const description = $(el).next('p').text().trim();
 
       if (heading) {
