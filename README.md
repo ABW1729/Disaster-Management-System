@@ -52,8 +52,8 @@ A full-stack  platform designed to support real-time disaster monitoring, resour
 ### Installation
 
 ```bash
-git clone https://github.com/ABW1729/Disaster-Management-Plarform.git
-cd disaster-response-platform
+git clone https://github.com/ABW1729/Disaster-Management-Platform.git
+cd Disaster-Management-Platform  
 
 cd /backend
 npm install
