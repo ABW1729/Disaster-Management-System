@@ -6,25 +6,17 @@ export default function AddResourceForm({ disasterId, onSuccess }) {
   const [form, setForm] = useState({
     name: '',
     location_name: '',
-    lat: '',
-    lon: '',
     type: 'shelter',
   });
 
   const addResource = async () => {
     if (!disasterId) return alert('Disaster not selected');
     try {
-      const res = await axios.post(`/api/disasters/${disasterId}/resources`, {
-        ...form,
-        lat: parseFloat(form.lat),
-        lon: parseFloat(form.lon),
-      });
+      const res = await addResource(disasterId,form);
       alert('Resource added!');
       setForm({
         name: '',
         location_name: '',
-        lat: '',
-        lon: '',
         type: 'shelter',
       });
       onSuccess?.();
@@ -46,16 +38,6 @@ export default function AddResourceForm({ disasterId, onSuccess }) {
         placeholder="Location Name"
         value={form.location_name}
         onChange={e => setForm({ ...form, location_name: e.target.value })}
-      />
-      <input
-        placeholder="Latitude"
-        value={form.lat}
-        onChange={e => setForm({ ...form, lat: e.target.value })}
-      />
-      <input
-        placeholder="Longitude"
-        value={form.lon}
-        onChange={e => setForm({ ...form, lon: e.target.value })}
       />
       <select
         value={form.type}
