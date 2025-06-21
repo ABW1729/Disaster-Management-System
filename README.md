@@ -135,7 +135,7 @@ const users = {
 ## 📚 Tech Stack
 
 - React, Vite, Axios, Socket.IO
-- Express, Supabase, Puppeteer
-- PostgreSQL (PostGIS), Gemini API
+- Express, Supabase, Cheerio 
+- PostgreSQL (PostGIS), Gemini API, TwitterAPI
 
 
