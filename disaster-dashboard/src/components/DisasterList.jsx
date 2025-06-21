@@ -112,9 +112,13 @@ const fetchDisasters = async () => {
                   <td>{d.tags?.join(', ') || '-'}</td>
                   <td>
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
-                      <button onClick={() => toggleForm(d.id)}>
-                        {openFormId === d.id ? 'Cancel' : 'Add Resource'}
-                      </button>
+                                  <button
+                          onClick={() => {
+                            setCurrentDisasterId(d.id);
+                            setAddModalOpen(true);
+                          }}>
+                              Add Resource
+                            </button>
                       <button
                         onClick={() => {
                           setEditDisasterId(d.id);
@@ -135,15 +139,6 @@ const fetchDisasters = async () => {
                     </div>
                   </td>
                 </tr>
-               <button
-                  onClick={() => {
-                    setCurrentDisasterId(d.id);
-                    setAddModalOpen(true);
-                  }}
-                >
-                  Add Resource
-                </button>
-
               </React.Fragment>
             ))}
           </tbody>
