@@ -40,8 +40,6 @@ export default function ReportList() {
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
           <tr>
-            <th>User</th>
-            <th>Disaster</th>
             <th>Image</th>
             <th>Content</th>
             <th>Status</th>
@@ -51,8 +49,6 @@ export default function ReportList() {
         <tbody>
           {reports.map(r => (
             <tr key={r.id}>
-              <td>{r.user_id}</td>
-              <td>{r.disaster_id}</td>
               <td><a href={r.image_url} target="_blank">View</a></td>
               <td>{r.content}</td>
               <td>{r.verification_status}</td>
